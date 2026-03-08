@@ -1,8 +1,8 @@
 /* CSS Variables - Will be updated by JavaScript */
 :root {
     /* Colors */
-    --background-color-1: #ffafbd;
-    --background-color-2: #ffc3a0;
+    --background-color-1: #e0c3fc; 
+    --background-color-2: #8ec5fc;
     --button-color: #ff6b6b;
     --button-hover: #ff8787;
     --text-color: #ff4757;
