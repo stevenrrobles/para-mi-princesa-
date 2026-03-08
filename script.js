@@ -1,90 +1,104 @@
-// Seleccionar los elementos del HTML
-const container = document.querySelector('.container');
-const question1 = document.querySelector('#question1');
-const question2 = document.querySelector('#question2');
-const question3 = document.querySelector('#question3');
-const celebration = document.querySelector('#celebration');
+// Selección de elementos
+const audio = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicToggle');
+const loveMeter = document.getElementById('loveMeter');
+const loveValue = document.getElementById('loveValue');
 
-// Llenar los textos iniciales (para que no aparezca vacío)
-document.getElementById('valentineTitle').innerText = "Para mi Princesa 🌹";
-document.getElementById('question1Text').innerText = "¿Sabes qué día es hoy?";
-document.getElementById('yesBtn1').innerText = "Mmm no...";
-document.getElementById('noBtn1').innerText = "Ni idea";
-document.getElementById('secretAnswerBtn').innerText = "¡Es el Día de la Mujer y tengo algo para ti! ❤️";
-document.getElementById('question2Text').innerText = "¿Qué tanto me amas?";
-document.getElementById('startText').innerText = "Te amo un";
-document.getElementById('nextBtn').innerText = "Siguiente ❤️";
-document.getElementById('question3Text').innerText = "¿Me dejas ser el dueño de tus sonrisas por siempre?";
-document.getElementById('yesBtn3').innerText = "¡Sí, acepto! ❤️";
-document.getElementById('noBtn3').innerText = "No";
+// 1. Inicializar textos al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('valentineTitle').innerText = "Para mi Princesa 🌹";
+    document.getElementById('question1Text').innerText = "¿Sabes qué día es hoy?";
+    document.getElementById('yesBtn1').innerText = "Mmm no...";
+    document.getElementById('noBtn1').innerText = "Ni idea";
+    document.getElementById('secretAnswerBtn').innerText = "¡Es el Día de la Mujer y tengo algo para ti! ❤️";
+    document.getElementById('question2Text').innerText = "¿Qué tanto me amas?";
+    document.getElementById('nextBtn').innerText = "Siguiente ❤️";
+    document.getElementById('question3Text').innerText = "¿Me dejas ser el dueño de tus sonrisas por siempre?";
+    document.getElementById('yesBtn3').innerText = "¡Sí, acepto! ❤️";
+    document.getElementById('noBtn3').innerText = "No";
+});
 
-// Funciones de navegación
+// 2. Control de Música
+function toggleMusic() {
+    if (audio.paused) {
+        audio.play();
+        musicBtn.innerText = "⏸️ Música: ON";
+    } else {
+        audio.pause();
+        musicBtn.innerText = "🎵 Música: OFF";
+    }
+}
+
+if(musicBtn) {
+    musicBtn.addEventListener('click', toggleMusic);
+}
+
+// Iniciar música al primer toque (truco para navegadores)
+document.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play();
+        musicBtn.innerText = "⏸️ Música: ON";
+    }
+}, { once: true });
+
+// 3. Navegación entre preguntas
 function showNextQuestion(num) {
-    document.querySelectorAll('.question-section').forEach(section => section.classList.add('hidden'));
+    // Aseguramos que la música suene al avanzar
+    if (audio.paused) audio.play();
+    
+    document.querySelectorAll('.question-section').forEach(section => {
+        section.classList.add('hidden');
+    });
     document.getElementById(`question${num}`).classList.remove('hidden');
 }
 
-// Función del botón que huye (opcional, para el botón NO)
-function moveButton(btn) {
-    btn.style.position = 'absolute';
-    btn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
-    btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+// 4. Medidor de amor
+if(loveMeter) {
+    loveMeter.addEventListener('input', () => {
+        loveValue.innerText = loveMeter.value;
+    });
 }
 
-// Función Final: La Dedicatoria
+// 5. Función del botón que escapa (Mejorada para móvil)
+function moveButton(btn) {
+    const container = document.querySelector('.container');
+    const containerRect = container.getBoundingClientRect();
+    
+    // Calcula límites para que no se salga de la tarjeta blanca
+    const maxX = containerRect.width - btn.offsetWidth - 20;
+    const maxY = containerRect.height - btn.offsetHeight - 20;
+    
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+    
+    btn.style.position = "absolute";
+    btn.style.left = randomX + "px";
+    btn.style.top = randomY + "px";
+}
+
+// 6. Función Final: Celebración y Dedicatoria
 function celebrate() {
-    question3.classList.add('hidden');
+    document.getElementById('question3').classList.add('hidden');
+    const celebration = document.getElementById('celebration');
     celebration.classList.remove('hidden');
     
-    // Aquí es donde añadimos la foto
     const fotoURL = "https://i.postimg.cc/52NRRvDy/Whats_App_Image_2026_01_22_at_19_37_10_(1).jpg"; 
 
-    document.getElementById('celebrationTitle').innerText = "¡Sabía que dirías que sí! ❤️";
-    
-    // Insertamos la foto y el mensaje
-    document.getElementById('celebration').innerHTML = `
-        <h2 style="color: #d63384;">${document.getElementById('celebrationTitle').innerText}</h2>
-        <img src="${fotoURL}" style="width: 80%; max-width: 300px; border-radius: 15px; border: 5px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin: 15px 0;">
-        <p class="celebration-text" style="font-size: 1.1rem; padding: 0 10px;">
-            "Para la mujer más hermosa que mis ojos han visto, la que se convirtió en mi todo de la forma más natural y perfecta. ❤️ Eres el regalo más grande que la vida 
-            me ha dado y hoy, en el Día de la Mujer, quiero recordarte que eres mi prioridad, mi reina y la dueña absoluta de mi corazón. Me sobran los motivos para amarte, 
-            pero me falta vida para demostrártelo todo. Soy capaz de mover el cielo y la tierra solo por ver esa sonrisa tuya que me ilumina el alma. ¡Feliz Día de la Mujer, 
-            mi vida, gracias por existir y por dejarme ser parte de tu historia! ✨🌹" <br><br>
-            <strong>¡Feliz Día de la Mujer, mi reina! ✨🌹</strong>
+    celebration.innerHTML = `
+        <h2 style="color: #d63384; font-family: 'Dancing Script', cursive; font-size: 2rem;">¡Sabía que dirías que sí! ❤️</h2>
+        <img src="${fotoURL}" style="width: 85%; max-width: 300px; border-radius: 20px; border: 6px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.2); margin: 20px 0;">
+        <p style="font-size: 1.1rem; color: #444; line-height: 1.5; padding: 0 10px; text-align: center;">
+            "Para la mujer más hermosa que mis ojos han visto, la que se convirtió en mi todo de la forma más natural y perfecta. ❤️ 
+            Eres el regalo más grande que la vida me ha dado y hoy, en el Día de la Mujer, quiero recordarte que eres mi prioridad, 
+            mi reina y la dueña absoluta de mi corazón. Me sobran los motivos para amarte, pero me falta vida para demostrártelo todo. 
+            Soy capaz de mover el cielo y la tierra solo por ver esa sonrisa tuya que me ilumina el alma. ¡Feliz Día de la Mujer, 
+            mi vida, gracias por existir y por dejarme ser parte de tu historia! ✨🌹"
         </p>
-        <p id="celebrationEmojis">💖✨🌷👸🌈</p>
+        <p style="font-size: 2rem; margin-top: 15px;">💖✨🌷👸🌈</p>
     `;
 }
 
-// Escuchar los clicks del medidor de amor
-const loveMeter = document.getElementById('loveMeter');
-const loveValue = document.getElementById('loveValue');
-loveMeter.addEventListener('input', () => {
-    loveValue.innerText = loveMeter.value;
-});
-
-// Hacer que las funciones sean globales para que el HTML las vea
+// Hacer funciones globales
 window.showNextQuestion = showNextQuestion;
 window.moveButton = moveButton;
 window.celebrate = celebrate;
-
-const audio = document.getElementById('bgMusic');
-const musicBtn = document.getElementById('musicToggle');
-
-// Iniciar música al primer clic en cualquier parte
-document.addEventListener('click', () => {
-    audio.play().catch(e => console.log("Esperando interacción..."));
-}, { once: true });
-
-// Control manual del botón
-if(musicBtn) {
-    musicBtn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play();
-            musicBtn.innerText = "⏸️ Pausar";
-        } else {
-            audio.pause();
-            musicBtn.innerText = "🎵 Música";
-        }
-    });
-}
