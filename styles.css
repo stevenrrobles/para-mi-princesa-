@@ -1,8 +1,8 @@
 /* CSS Variables - Will be updated by JavaScript */
 :root {
     /* Colors */
-    --background-color-1: #e0c3fc; 
-    --background-color-2: #8ec5fc;
+    --background-color-1: #ffafbd;
+    --background-color-2: #ffc3a0;
     --button-color: #ff6b6b;
     --button-hover: #ff8787;
     --text-color: #ff4757;
@@ -20,7 +20,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f3e5f5;
+    background: linear-gradient(135deg, var(--background-color-1, var(--background-color-2));
     font-family: Arial, sans-serif;
     overflow-x: hidden;
 }
