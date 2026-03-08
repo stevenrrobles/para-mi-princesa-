@@ -36,9 +36,23 @@ function celebrate() {
     question3.classList.add('hidden');
     celebration.classList.remove('hidden');
     
+    // Aquí es donde añadimos la foto
+    const fotoURL = "https://i.postimg.cc/52NRRvDy/Whats_App_Image_2026_01_22_at_19_37_10_(1).jpg"; 
+
     document.getElementById('celebrationTitle').innerText = "¡Sabía que dirías que sí! ❤️";
-    document.getElementById('celebrationMessage').innerText = "Para la mujer más linda del mundo, la que es mi todo y la más perfecta. Te amo con todo mi corazón y soy capaz de darlo todo solo por ver una sonrisa en tu bello rostro. ¡Feliz Día de la Mujer, mi reina! ✨🌹";
-    document.getElementById('celebrationEmojis').innerText = "💖✨🌷👸🌈";
+    
+    // Insertamos la foto y el mensaje
+    document.getElementById('celebration').innerHTML = `
+        <h2 style="color: #d63384;">${document.getElementById('celebrationTitle').innerText}</h2>
+        <img src="${fotoURL}" style="width: 80%; max-width: 300px; border-radius: 15px; border: 5px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin: 15px 0;">
+        <p class="celebration-text" style="font-size: 1.1rem; padding: 0 10px;">
+            Para la mujer más linda del mundo, la que es mi todo y la más perfecta. 
+            Te amo con todo mi corazón y soy capaz de darlo todo solo por ver una sonrisa 
+            en tu bello rostro. <br><br>
+            <strong>¡Feliz Día de la Mujer, mi reina! ✨🌹</strong>
+        </p>
+        <p id="celebrationEmojis">💖✨🌷👸🌈</p>
+    `;
 }
 
 // Escuchar los clicks del medidor de amor
