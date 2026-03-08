@@ -52,3 +52,24 @@ loveMeter.addEventListener('input', () => {
 window.showNextQuestion = showNextQuestion;
 window.moveButton = moveButton;
 window.celebrate = celebrate;
+
+const audio = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicToggle');
+
+// Iniciar música al primer clic en cualquier parte
+document.addEventListener('click', () => {
+    audio.play().catch(e => console.log("Esperando interacción..."));
+}, { once: true });
+
+// Control manual del botón
+if(musicBtn) {
+    musicBtn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play();
+            musicBtn.innerText = "⏸️ Pausar";
+        } else {
+            audio.pause();
+            musicBtn.innerText = "🎵 Música";
+        }
+    });
+}
