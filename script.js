@@ -46,9 +46,10 @@ function celebrate() {
         <h2 style="color: #d63384;">${document.getElementById('celebrationTitle').innerText}</h2>
         <img src="${fotoURL}" style="width: 80%; max-width: 300px; border-radius: 15px; border: 5px solid #fff; box-shadow: 0 4px 15px rgba(0,0,0,0.2); margin: 15px 0;">
         <p class="celebration-text" style="font-size: 1.1rem; padding: 0 10px;">
-            Para la mujer más linda del mundo, la que es mi todo y la más perfecta. 
-            Te amo con todo mi corazón y soy capaz de darlo todo solo por ver una sonrisa 
-            en tu bello rostro. <br><br>
+            "Para la mujer más hermosa que mis ojos han visto, la que se convirtió en mi todo de la forma más natural y perfecta. ❤️ Eres el regalo más grande que la vida 
+            me ha dado y hoy, en el Día de la Mujer, quiero recordarte que eres mi prioridad, mi reina y la dueña absoluta de mi corazón. Me sobran los motivos para amarte, 
+            pero me falta vida para demostrártelo todo. Soy capaz de mover el cielo y la tierra solo por ver esa sonrisa tuya que me ilumina el alma. ¡Feliz Día de la Mujer, 
+            mi vida, gracias por existir y por dejarme ser parte de tu historia! ✨🌹" <br><br>
             <strong>¡Feliz Día de la Mujer, mi reina! ✨🌹</strong>
         </p>
         <p id="celebrationEmojis">💖✨🌷👸🌈</p>
