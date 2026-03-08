@@ -316,3 +316,37 @@ h2 {
     transform: scale(1.05);
     background: var(--secondary-color);
 } 
+
+/* ARREGLO PARA CELULARES */
+@media (max-width: 600px) {
+    .container {
+        width: 90% !important;
+        padding: 20px !important;
+        margin: 10px auto !important;
+    }
+
+    h1 {
+        font-size: 1.8rem !important;
+    }
+
+    h2 {
+        font-size: 1.4rem !important;
+    }
+
+    .cute-btn {
+        width: 100% !important; /* Botones a lo ancho para que sea fácil tocar */
+        margin: 10px 0 !important;
+        font-size: 1rem !important;
+    }
+
+    img {
+        max-width: 100% !important; /* La foto no se saldrá de la pantalla */
+        height: auto !important;
+    }
+
+    .question-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
